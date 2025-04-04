@@ -22,20 +22,35 @@ int main() {
 
     // Арифметические операции
     Complex sum = z1 + z2;
-    std::cout << "Сумма: ";
+    std::cout << "Sum = ";
     sum.Print();
 
     Complex diff = z1 - z2;
-    std::cout << "Разность: ";
+    std::cout << "Substr: ";
     diff.Print();
 
     Complex prod = z1 * z2;
-    std::cout << "Произведение: ";
+    std::cout << "Multiplication: ";
     prod.Print();
 
-    Complex quot = z1.Div(z2);
-    std::cout << "Частное: ";
+    Complex quot = z1 / z2;
+    std::cout << "Private: ";
     quot.Print();
+
+    Complex incr1 = ++z1;
+    std::cout << "Increment1: ";
+    incr1.Print();
+
+    Complex incr2 = z1++;
+    std::cout << "Increment2: ";
+    incr2.Print();
+
+    std::cout << "z1 == z2 = " << (z1 == z2) << std::endl;
+    std::cout << "z1 >= z2 = " << (z1 >= z2) << std::endl;
+
+    std::cout << "z1 + 2 = ";
+    Complex z3 = 2 + z1;
+    z3.Print();
 
     return 0;
 }
