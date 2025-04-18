@@ -69,73 +69,26 @@ void Complex::ExpPrint() const {
     std::cout << rho << " * e^(i*" << phi << ")" << std::endl;  // Формат: r * e^(i*phi)
 }
 
-Complex Complex::operator+(const Complex& z) const {
-    return Complex(*re + *z.re, *im + *z.im);   // Формула: (a + bi) + (c + di) = (a + c) + (b + d)i
+// Complex Complex::operator+(const Complex &z) const {
+//     return Complex(*re + *z.re, *im + *z.im);
+// }
+
+// Complex Complex::operator+(int number) const {
+//     return Complex(*re + number, *im);
+// }
+
+
+Complex Complex::operator-(const Complex &z) const {
+    return Complex(*re - *z.re, *im - *z.im);   // Формула: (a + bi) - (c + di) = (a - c) + (b - d)i
 }
 
-Complex Complex::operator-(const Complex& z) const {
-    return Complex(*re - *z.re, *im - *z.im);   // Формула: (a + bi) + (c + di) = (a + c) + (b + d)i
+Complex Complex::operator*(const Complex &z) const {
+    return Complex(*re * *z.re - *im * *z.im, *re * *z.im + *im * *z.re);   // Формула: (a + bi) * (c + di) = (a*c - b*d) + (a*d + b*c)i
 }
 
-Complex Complex::operator*(const Complex& z) const {
-    return Complex(*re * *z.re - *im * *z.im, *re * *z.im + *im * *z.re);   // Формула: (a + bi) * (c + di) = (a*c - b*d) + (a*d + b*c)i   // Формула: (a + bi) + (c + di) = (a + c) + (b + d)i
-}
-
-Complex Complex::operator/(const Complex& z) const {
+Complex Complex::operator/(const Complex &z) const {
     double denominator = *z.re * *z.re + *z.im * *z.im; // Знаменатель: c^2 + d^2
-    return Complex((*re * *z.re + *im * *z.im) / denominator, (*im * *z.re - *re * *z.im) / denominator);  // Формула: (a + bi) + (c + di) = (a + c) + (b + d)i
-}
-
-Complex &Complex::operator++() {
-    *this->re += 1;
-    *this->im += 1;
-
-    return *this;
-}
-
-Complex &Complex::operator--() {
-    *this->re -= 1;
-    *this->im -= 1;
-
-    return *this;
-}
-
-Complex &Complex::operator++(int) {
-    *this->re += 1;
-    *this->im += 1;
-
-    return *this;
-}
-
-Complex &Complex::operator--(int) {
-    *this->re -= 1;
-    *this->im -= 1;
-
-    return *this;
-}
-
-bool Complex::operator==(const Complex &z) const {
-    return *re == *z.re && *im == *z.im;
-}
-
-bool Complex::operator!=(const Complex &z) const {
-    return !(*this == z);
-}
-
-bool Complex::operator<(const Complex &z) const {
-    return this->Abs() < z.Abs();
-}
-
-bool Complex::operator>(const Complex &z) const {
-    return this->Abs() > z.Abs();
-}
-
-bool Complex::operator<=(const Complex &z) const {
-    return this->Abs() <= z.Abs();
-}
-
-bool Complex::operator>=(const Complex &z) const {
-    return this->Abs() >= z.Abs();
+    return Complex((*re * *z.re + *im * *z.im) / denominator, (*im * *z.re - *re * *z.im) / denominator);   // Формула: (a + bi) / (c + di) = [(a*c + b*d) + (b*c - a*d)i] / (c^2 + d^2)
 }
 
 // Сложение двух комплексных чисел
@@ -158,7 +111,3 @@ Complex Complex::Div(const Complex& z) const {
     double denominator = *z.re * *z.re + *z.im * *z.im; // Знаменатель: c^2 + d^2
     return Complex((*re * *z.re + *im * *z.im) / denominator, (*im * *z.re - *re * *z.im) / denominator);   // Формула: (a + bi) / (c + di) = [(a*c + b*d) + (b*c - a*d)i] / (c^2 + d^2)
 }
-//
-// Complex operator+(const Complex &z1, const Complex &z2) {
-//     return Complex(z1.GetRe() + z2.GetRe(), z1.GetIm() + z2.GetIm());
-// }

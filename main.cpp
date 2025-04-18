@@ -1,61 +1,60 @@
 #include <iostream>
+#include "string"
 #include "Complex.h"
+#include <algorithm>
 
-// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-int main() {
-    std::cout << "Введите действительную и мнимую части первого комплексного числа: ";
-    double re1, im1;
-    std::cin >> re1 >> im1;
-    Complex z1(re1, im1);
+using namespace std;
 
-    std::cout << "Введите действительную и мнимую части второго комплексного числа: ";
-    double re2, im2;
-    std::cin >> re2 >> im2;
-    Complex z2(re2, im2);
+/**
+ * Форматирование программного кода (цвет и переносы строк)
+ * Первые три задания не надо реализовывать, просто применить для заданий ниже
+ * Первые три с вектором, а вторые 3 без вектора
+ * Чужие варианты можно не писать
+ */
 
-    // Вывод чисел
-    std::cout << "Первое число: ";
-    z1.Print();
-    std::cout << "Второе число: ";
-    z2.Print();
+template <typename Alesha>
+bool contains(Alesha value, Alesha* array, int size) {
+    for (int i = 0; i < size; i++) {
+        if (array[i] == value)
+            return true;
+    }
 
-    // Арифметические операции
-    Complex sum = z1 + z2;
-    std::cout << "Sum = ";
-    sum.Print();
-
-    Complex diff = z1 - z2;
-    std::cout << "Substr: ";
-    diff.Print();
-
-    Complex prod = z1 * z2;
-    std::cout << "Multiplication: ";
-    prod.Print();
-
-    Complex quot = z1 / z2;
-    std::cout << "Private: ";
-    quot.Print();
-
-    Complex incr1 = ++z1;
-    std::cout << "Increment1: ";
-    incr1.Print();
-
-    Complex incr2 = z1++;
-    std::cout << "Increment2: ";
-    incr2.Print();
-
-    std::cout << "z1 == z2 = " << (z1 == z2) << std::endl;
-    std::cout << "z1 >= z2 = " << (z1 >= z2) << std::endl;
-
-    std::cout << "z1 + 2 = ";
-    Complex z3 = 2 + z1;
-    z3.Print();
-
-    return 0;
+    return false;
 }
 
-// TIP See CLion help at <a
-// href="https://www.jetbrains.com/help/clion/">jetbrains.com/help/clion/</a>.
-//  Also, you can try interactive lessons for CLion by selecting
-//  'Help | Learn IDE Features' from the main menu.
+template <typename T>
+int index_of(T value, T* array, int size) {
+    for (int i = 0; i < size; i++) {
+        if (array[i] == value)
+            return i;
+    }
+
+    return -1;
+}
+
+template <typename T>
+bool change(T left, T right, T* array, int size) {
+    if (!contains(left, array, size) || !contains(right, array, size))
+        return false;
+
+    int left_idx = index_of(left, array, size);
+    int right_idx = index_of(right, array, size);
+
+    swap(array[left_idx], array[right_idx]);
+
+    return true;
+}
+
+int main() {
+    int* num_arr = new int[5] {5, 4, 7, 9, 0};
+
+    bool is_success = change(5, 9, num_arr, 5);
+    if (is_success)
+        cout << "Successful array swap" << endl;
+    else
+        cout << "Failed" << endl;
+
+    for (int i = 0; i < 5; i++) {
+        cout << num_arr[i] << endl;
+    }
+}
