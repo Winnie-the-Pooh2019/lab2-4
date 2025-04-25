@@ -18,7 +18,7 @@ public:
 
     template<typename T, typename R>
     double operator()(T x, R y) const {
-        return coef * std::log(x);
+        return coef * std::log(x) * std::cos(y);
     }
 };
 
