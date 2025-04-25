@@ -38,6 +38,10 @@ public:
     Complex operator*(const Complex& z) const;
     Complex operator/(const Complex& z) const;
 
+    Complex operator[](unsigned int index) const;
+
+    double operator()();
+
     Complex& operator++() {
         *this->re += 1;
         *this->im += 1;
@@ -94,6 +98,12 @@ public:
     Complex Sub(const Complex &z) const; // Вычитание комплексных чисел
     Complex Mult(const Complex &z) const; // Умножение комплексных чисел
     Complex Div(const Complex &z) const; // Деление комплексных чисел
+
+    friend std::ostream& operator<<(std::ostream& os, const Complex& z) {
+        os << z.GetRe() << (z.GetIm() >= 0 ? "+" : "-") << " i* " << z.GetIm();
+
+        return os;
+    }
 };
 
 inline Complex operator+(int number, const Complex& z2) {
@@ -103,5 +113,7 @@ inline Complex operator+(int number, const Complex& z2) {
 inline Complex operator+(const Complex& z1, const Complex& z2) {
     return Complex(z1.GetRe() + z2.GetRe(), z1.GetIm() + z2.GetIm());
 }
+
+
 
 #endif //COMPLEX_H

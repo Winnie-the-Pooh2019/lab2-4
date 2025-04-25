@@ -111,3 +111,11 @@ Complex Complex::Div(const Complex& z) const {
     double denominator = *z.re * *z.re + *z.im * *z.im; // Знаменатель: c^2 + d^2
     return Complex((*re * *z.re + *im * *z.im) / denominator, (*im * *z.re - *re * *z.im) / denominator);   // Формула: (a + bi) / (c + di) = [(a*c + b*d) + (b*c - a*d)i] / (c^2 + d^2)
 }
+
+Complex Complex::operator[](unsigned int index) const {
+    return (index == 0) ? Complex(*re, 0) : Complex(0, *im);
+}
+
+double Complex::operator()() {
+    return this->Abs();
+}

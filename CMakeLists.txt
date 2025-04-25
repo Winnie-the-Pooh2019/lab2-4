@@ -5,4 +5,5 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(lab_2_4 main.cpp
         Complex.h
-        Complex.cpp)
+        Complex.cpp
+        Function.h)

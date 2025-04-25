@@ -1,38 +1,32 @@
 #include <iostream>
 #include "string"
 #include "Complex.h"
+#include "Function.h"
 #include <algorithm>
 
 using namespace std;
 
-/**
- * Форматирование программного кода (цвет и переносы строк)
- * Первые три задания не надо реализовывать, просто применить для заданий ниже
- * Первые три с вектором, а вторые 3 без вектора
- * Чужие варианты можно не писать
- */
-
-template <typename Alesha>
-bool contains(Alesha value, Alesha* array, int size) {
-    for (int i = 0; i < size; i++) {
-        if (array[i] == value)
-            return true;
-    }
-
-    return false;
-}
-
-template <typename T>
+template<typename T>
 int index_of(T value, T* array, int size) {
     for (int i = 0; i < size; i++) {
-        if (array[i] == value)
+        if (value == array[i])
             return i;
     }
 
     return -1;
 }
 
-template <typename T>
+template<typename Bober>
+bool contains(Bober number, Bober* array, int size) {
+    for (int i = 0; i < size; i++) {
+        if (number == array[i])
+            return true;
+    }
+
+    return false;
+}
+
+template<typename T>
 bool change(T left, T right, T* array, int size) {
     if (!contains(left, array, size) || !contains(right, array, size))
         return false;
@@ -46,15 +40,13 @@ bool change(T left, T right, T* array, int size) {
 }
 
 int main() {
-    int* num_arr = new int[5] {5, 4, 7, 9, 0};
+    Function f(2);
 
-    bool is_success = change(5, 9, num_arr, 5);
-    if (is_success)
-        cout << "Successful array swap" << endl;
-    else
-        cout << "Failed" << endl;
+    cout << f(5, 3) << endl;
 
-    for (int i = 0; i < 5; i++) {
-        cout << num_arr[i] << endl;
-    }
+    Complex z(1, 2);
+
+    cout << z() << endl;
+
+    cout << z[1] << endl;
 }
